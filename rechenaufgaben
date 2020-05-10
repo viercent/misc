@@ -1,0 +1,32 @@
+from random import randint
+aufloesung = []
+v1 = []
+v2 = []
+for i in range (0,10):
+    v1.append(randint(1,5))
+    v2.append(randint(1,5))
+o = input("+, - oder *? ")
+if o not in ("+", "-", "*"):
+    print("Bitte nur +, - oder * eintippen.")
+    o = input("+, - oder *? ")
+print(""" """)
+for i in range(0,10):
+    if o == "+":
+        if int(input(str(v1[i])+"+"+str(v2[i])+"=")) == v1[i]+v2[i]:
+            print("korrekt")
+            aufloesung.append(1)
+        else:
+            print("falsch")
+    elif o == "-":
+        if int(input(str(v1[i])+"-"+str(v2[i])+"=")) == v1[i]-v2[i]:
+            print("korrekt")
+            aufloesung.append(1)
+        else:
+            print("falsch")
+    else:
+        if int(input(str(v1[i])+"*"+str(v2[i])+"=")) == v1[i]*v2[i]:
+            print("korrekt")
+            aufloesung.append(1)
+        else:
+            print("falsch, richtig wäre "+str(v1[i]*v2[i]))       
+print(str(sum(aufloesung))+" von 10 Aufgaben korrekt gelöst")
