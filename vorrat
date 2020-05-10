@@ -1,0 +1,93 @@
+
+from openpyxl import Workbook, load_workbook, cell 
+from openpyxl.styles import Font, colors, Color
+import os
+
+if os.path.isfile("Vorrat.xlsx"):
+    wb = Workbook()
+    ws = wb.active
+else:    
+    wb = Workbook()
+    ws = wb.active
+    ws['A1'] = "Produkt"
+    ws['A1'].font = Font(bold=True, italic=True, color=colors.DARKBLUE)
+    ws['B1'] = "Anzahl"
+    ws['B1'].font = Font(bold=True, italic=True, color=colors.DARKBLUE)
+    ws['C1'] = "Gekauft am"
+    ws['C1'].font = Font(bold=True, italic=True, color=colors.DARKBLUE)
+    ws['D1'] = "Mindestens haltbar bis"
+    ws['D1'].font = Font(bold=True, italic=True, color=colors.DARKBLUE)
+    ws.column_dimensions['A'].width = 30
+    ws.column_dimensions['B'].width = 30
+    ws.column_dimensions['C'].width = 30
+    ws.column_dimensions['D'].width = 30
+    wb.save("Vorrat.xlsx")
+
+listemhd = []
+listegek = []
+listeprod = []
+listeanz = []
+
+import datetime as dt
+
+    ### FUNKTION GEKAUFT
+def gek(x, a, b, c, d):
+    today = dt.date.today()
+    if x in (a, b, c, d):
+        if x == a or x == b:
+            x = today.strftime("%y/%m/%d")
+            listegek.append(x)
+        else:
+            today += dt.timedelta(days = -1)
+            x = today.strftime("%y/%m/%d")
+            listegek.append(x)
+    else:
+        listegek.append(x)
+
+    ### FUNKTION MHD
+def mhd(x, a, b, c, d):
+    today = dt.date.today()
+    if x in (a, b, c, d):
+        if x == a or x == b:
+            today += dt.timedelta(days = +7)
+            x = today.strftime("%y/%m/%d")
+            listemhd.append(x)
+        else:
+            today += dt.timedelta(days = +14)
+            x = today.strftime("%y/%m/%d")
+            listemhd.append(x)
+    else:
+        listemhd.append(x)
+
+a = int(round(float(input("Wie viele Produkte wollen Sie hinzufügen? ")),0)) + 1
+if a == 1:
+    f = input("Haben Sie ein Produkt verbraucht? ")
+    if f in ("Ja", "ja", "j", "Yes", "yes", "y"):
+        f1 = input("Welches Produkt? ")
+        z = 0
+        wb = load_workbook(filename = 'Vorrat.xlsx')
+        ws = wb.active   
+        while z < 5:
+            z += 1
+            i = 0
+            for row in ws.iter_rows(min_row=1, max_row=ws.max_row, values_only=True):
+                 if row[0] == f1:
+                     i += 1
+                     ws.delete_rows(i, amount=1)
+                     wb.save("Vorrat.xlsx")
+                 else:
+                     i += 1                
+else:
+    i = 1
+    while i < a: 
+        listeprod.append(input("Produkt: "))
+        listeanz.append(input("Anzahl: "))
+        gek(input("Gekauft am (yy/mm/dd): "), "Heute", "heute", "Gestern", "gestern")
+        mhd(input("Mindestens haltbar bis (yy/mm/dd): "), "1 Woche", "Eine Woche", "2 Wochen", "Zwei Wochen")  
+        bundle = list(zip(listeprod, listeanz, listegek, listemhd))
+        wb = load_workbook(filename = 'Vorrat.xlsx')
+        ws = wb.active
+        ws.append(bundle[i-1])
+        wb.save("Vorrat.xlsx")
+        i += 1
+        print("----------")
