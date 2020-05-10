@@ -1,0 +1,367 @@
+#print("Hello World!")
+
+#netto = input("Preis exkl. Steuer: ")
+#brutto = float(netto) * 1.19 
+#print("Preis inkl. MwSt: "+str(brutto))
+
+#Kredit = input("Höhe Kredit: ")
+#Zinssatz = input("Zinssatz in % p.a.: ")
+#Zins = float(Kredit) * (float(Zinssatz) / 100) 
+#print("Errechneter Zins p.a.: "+str(Zins))
+
+#Normalpreis = input("Normalpreis des Produkts: ")
+#Rabatt = input("Rabatt in %: ")
+#Endpreis = float(Normalpreis) * (1- (float(Rabatt) / 100))
+#print("Errechneter Endpreis inkl. Rabatt: "+str(Endpreis))
+
+#Name = input("Hey, what's your name? ")
+#print("Nice to meet you, "+str(Name)+".")
+
+#a = input("Breite des Quaders in cm? ")
+#b = input("Länge des Quaders in cm? ")
+#c = input("Höhe des Quaders in cm? ")
+#Volumen = float(a) * float(b) * float(c)
+#Oberfläche = 2 * ( float(a) * float(c) + float(b) * float(c) + float(a) * float(b))
+#Raumdiagonale = (float(a) ** 2 + float(b) ** 2 + float(c) ** 2) ** 0.5
+#print("Volumen des Quaders: "+str(Volumen))
+#print("Oberfläche des Quaders: "+str(Oberfläche))
+#print("Raumdiagonale des Quaders: "+str(Raumdiagonale))
+
+#a = input("Breite des Quaders in cm? ")
+#a = float(a)
+#while float(a) < 0:
+#    a = input("Breite muss eine positive Zahl sein. Bitte Länge erneut eingeben: ")
+#    a = float(a)   
+#b = input("Länge des Quaders in cm? ")
+#b = float(b)
+#while float(b) < 0:
+#    b = input("Breite muss eine positive Zahl sein. Bitte Länge erneut eingeben: ")
+#    b = float(b)       
+#c = input("Höhe des Quaders in cm? ")
+#c = float(c)
+#while float(c) < 0:
+#    c = input("Breite muss eine positive Zahl sein. Bitte Länge erneut eingeben: ")
+#    c = float(c)       
+#Volumen = a * b * c
+#Oberfläche = 2 * (a * c + b * c + a * b)
+#Raumdiagonale = (a ** 2 + b ** 2 + c ** 2) ** 0.5
+#print("Volumen des Quaders: "+str(Volumen))
+#print("Oberfläche des Quaders: "+str(Oberfläche))
+#print("Raumdiagonale des Quaders: "+str(Raumdiagonale))
+
+#Normalpreis = input("Normalpreis des Produkts: ")
+#Rabatt = input("Rabatt in %: ")
+#Rabatt = float(Rabatt)
+#while Rabatt >= 100:
+#    Rabatt = input("Ein Rabatt über/gleich 100% ist unmöglich. Bitte Rabatt zwischen 0 und 100 eingeben: ")
+#    Rabatt = float(Rabatt)
+#Endpreis = float(Normalpreis) * (1- (float(Rabatt) / 100))
+#print("Errechneter Endpreis inkl. Rabatt: "+str(Endpreis))
+
+#Preis = input("Preis des Produkts: ")
+#Preis = float(Preis)
+#Gezahlt = input("Kunde hat gezahlt: ")
+#Gezahlt = float(Gezahlt)
+#if Preis > Gezahlt:
+#    ZuZahlen = Preis - Gezahlt
+#    print("Der Kunde hat "+str(ZuZahlen)+"€ zu wenig gezahlt!")
+#else:
+#    Rückgeld = Gezahlt - Preis
+#    print("Der Kunde bekommt "+str(Rückgeld)+"€ zurück")
+
+#a = input("a =  ")
+#a = float(a)
+#b = input("b =  ")
+#b = float(b)
+#c = input("c =  ")
+#c = float(c)
+#Diskriminante = (b ** 2) - (4 * a * c)
+#if Diskriminante > 0:
+#    print("Die quadratische Gleichung hat genau zwei Lösungen.")
+#elif Diskriminante == 0:
+#    print("Die quadratische Gleichung hat genau eine Lösung.")
+#elif Diskriminante < 0:
+#    print("Die quadratische Gleichung hat keine Lösung.")
+
+#import statistics as st
+#list = []
+#a = input("Zahl 1: ")
+#list.append(float(a))
+#b = input("Zahl 2: ")
+#list.append(float(b))
+#c = input("Zahl 3: ")
+#list.append(float(c))
+#d = input("Zahl 4: ")
+#list.append(float(d))
+#print("Mittelwert: " + str(st.mean(list)))
+
+
+#list = []
+#list2 = [] 
+#a = input("Kandidat 1: ")
+#list.append(a)
+#av = input("Stimmen Kandidat 1: ")
+#list2.append(int(av))
+#b = input("Kandidat 2: ")
+#list.append(b)
+#bv = input("Stimmen Kandidat 2: ")
+#list2.append(int(bv))
+#c = input("Kandidat 3: ")
+#list.append(c)
+#cv = input("Stimmen Kandidat 3: ")
+#list2.append(int(cv))
+#dv = sum(list2)
+#zähler = 0
+#x = 0
+#while zähler < len(list):
+#    print(str(list[x]) + " hat " + str((list2[x] / dv) * 100) + "% der Stimmen bekommen")    
+#    x += 1
+#    zähler += 1
+
+
+#l = input("Länge des Grundstücks in m: ")
+#l = float(l)
+#b = input("Breite des Grundstücks in m: ")
+#b = float(b)
+#m2preis = input("Quadratmeterpreis des Grundstücks in Euro: ")
+#m2preis = float(m2preis)
+#provproz = input("Maklerprovision in Prozent: ")
+#provproz = float(provproz)
+#ust = 1.19 
+#grpreis = l * b * m2preis
+#print("Grundstückspreis: "+str(grpreis * ust))
+#provabs = grpreis * (provproz * 0.01) * ust
+#print("Maklerprovision: "+str(provabs))
+
+
+
+#lpreis = input("Literpreis in Euro: ")
+#lpreis = float(lpreis)
+#lverbrauch = input("Verbrauchtes Benzin in Liter: ")
+#lverbrauch = float(lverbrauch)
+#km = input("Gefahrene Kilometer: ")
+#km = float(km) 
+#verbrauch = lverbrauch * (100 / km)
+#preis = verbrauch * lpreis
+#preisstrecke = preis * (km / 100)
+#print("Verbrauch pro 100km: "+(str("%.2f" % verbrauch)))
+#print("Preis pro 100km: "+(str("%.2f" % preis)))
+#print("Preis der Strecke: "+(str("%.2f" % preisstrecke)))
+
+
+
+
+#from random import randint
+#a = randint(1,100)
+#b = randint(1,100)
+#c = input("Was ergibt "+str(a)+" + "+str(b)+"? "+"Hier eingeben: ")
+#c = float(c)
+#test = 1 
+#while test == 1:
+#    if c == a+b:
+#        print("Jawoll!")
+#        test = 0 
+#    else:
+#        c = input("Leider falsch. Zweiter Versuch! Was ergibt "+str(a)+" + "+str(b)+"? "+"Hier eingeben: ")
+#        c = float(c)
+#        test = 1 
+
+
+
+#a = input("Beliebiges a = ")
+#a = float(a)
+#b = input("Ganzzahliges b (wird ggf. auf eine ganze Zahl gerundet!) = ")
+#b = float(b)
+#b = round(b, 0)
+#b = int(b)
+#print(a ** b)
+
+
+
+#a = input("Fakultät ")
+#a = float(a)
+#a = round(a, 0)
+#a = int(a)
+#y = x = a
+#while y > 2:
+#    y -= 1
+#    x *= y
+#print(x)
+
+
+
+#a = input("Natürliche Zahl: ")
+#a = float(a)
+#a = round(a, 0)
+#a = int(a)
+#b = 1
+#while b ** 2 <= a:
+#    ergebnis = b ** 2
+#    b += 1
+#print("Die größte Zweierpotenz ist "+str(b-1)+".")
+
+
+
+#a = input("Anzahl Zeilen: ")
+#a = float(a)
+#a = round(a, 0)
+#a = int(a)
+#b = input("Anzahl Sterne: ")
+#b = float(b)
+#b = round(b, 0)
+#b = int(b)
+#c = ""
+#for i in range(1,b+1):
+#    c += "*"
+#for i in range(1,a+1):
+#    print(c)
+
+#a = input("Höhe des Baums: ")
+#a = float(a)
+#a = round(a, 0)
+#a = int(a)
+#b = "*"
+#for i in range(1,a+1):
+#    print(b)
+#    b += "*"
+
+#a = input("Höhe des Baums: ")
+#a = float(a)
+#a = round(a, 0)
+#a = int(a)
+#c = 1 
+#b = " "
+#d = a 
+#for i in range(1,a+1):
+#    if 0 < a-1:
+#        b = a * " " + c * "*"
+#        a -= 1
+#        c += 2
+#        print(b)
+#    else:
+#        print(d * " "+"#")
+
+
+#vh = input("Größe haus in m3: ")
+#vh = float(vh)
+#k = input("Anzahl Käfer: ")
+#k = float(k)
+#k = round(k, 0)
+#k = int(k)
+#gk = 0.0002
+#vk = k * gk
+#l = []
+#zähler = 1
+#while vh > vk:
+#    vk = vk * 1.95
+#    l.append("Woche "+(str(zähler)+": "+str(round(vk, 3))+"."))
+#    zähler += 1
+#print(l[-1])
+
+
+
+#from random import randint
+#richtig = [0]
+#falsch = [0]
+#for i in range(1,11):
+#    a = randint(1,10)
+#    b = randint(1,10)
+#    c = input("Was ergibt "+str(a)+" + "+str(b)+"? "+"Hier eingeben: ")
+#    c = float(c)
+#    c = round(c, 0)
+#    c = int(c)
+#    if c == a + b:
+#        richtig.append(1)
+#    else:
+#        falsch.append(1)
+#print("Von 10 Aufgaben haben Sie "+str(sum(richtig))+" richtig und "+str(sum(falsch))+" falsch beantwortet.")    
+
+
+
+# z = input("Zahl: ")
+# z = float(z)
+# l = int(round(float(input("Länge: ")), 0))
+# for i in range(1, l+1):
+#    e = z * i
+#    print(str(i)+" * "+str(z)+" ergibt "+str(round(e, 2)))
+
+
+
+# bis = int(round(float(input("Fibunaccizahlen bis einschließlich: ")), 0))
+# list = list(range(2,103))
+# zähler = 0
+# erg = [0, 1, 1]
+# a = 1
+# b = 1 
+# while a < bis and a < bis:
+#     if list[zähler] % 2 == 0:
+#         a = a + b   
+#         zähler += 1
+#         erg.append(a)
+#     else: 
+#         b = a + b   
+#         zähler += 1 
+#         erg.append(b)
+# if erg[-1] > bis:
+#     del erg[-1]
+# else:
+#     print(erg)
+# if erg[-1] > bis:
+#     del erg[-1]
+#     print(erg)
+# else:
+#     print(erg)
+
+
+# Schreibe ein Konsolenprogramm, bei dem der Nutzer einen Geldbetrag mit Euro und Cent eingibt und der Rechner
+# ausgibt mit wie vielen 50-Euro-Scheinen, 20-Euro-Scheinen, 10-Euro-Scheinen usw. bis wie viele 1-Cent-Stücke,
+# dieser Betrag ausbezahlt wird.
+
+# e = round(float(input("Eingabe in Euro.Cent: ")),2)
+# liste100 = []
+# while e >= 100:
+#     e = e - 100
+#     liste100.append(1)
+# print("100 € Scheine: "+str(sum(liste100)))
+# liste50 = []
+# while e >= 50:
+#     e = e - 50
+#     liste50.append(1)
+# print("50 € Scheine: "+str(sum(liste50)))
+# liste20 = []
+# while e >= 20:
+#     e = e - 20
+#     liste20.append(1)
+# print("20 € Scheine: "+str(sum(liste20)))
+# liste10 = []
+# while e >= 10:
+#     e = e - 10
+#     liste10.append(1)
+# print("10 € Scheine: "+str(sum(liste10)))
+# liste5 = []
+# while e >= 5:
+#     e = e - 5
+#     liste5.append(1)
+# print("5 € Scheine: "+str(sum(liste5)))
+# liste2 = []
+# while e >= 2:
+#     e = e - 2
+#     liste2.append(1)
+# print("2 € Scheine: "+str(sum(liste2)))
+
+
+# w = [100, 50, 20, 10, 5, 2, 1, 0.50, 0.20, 0.10, 0.05, 0.02, 0.01]
+# s = ([0]*len(w))
+# a = 0
+# e = round(float(input("Eingabe in Euro.Cent: ")),2)
+# while e != 0:
+#     while not (e // w[a] == 0):
+#         e = round((e - w[a]), 2)
+#         s[a] += 1
+#     if a == len(w)-1:
+#         while e != 0.00:
+#             s[a] += 1
+#     else:
+#         print(str(s[a])+" mal "+str(w[a]))
+#         a += 1
+# print(str(s[a])+" mal "+str(w[a]))
