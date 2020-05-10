@@ -1,0 +1,9 @@
+from datetime import timedelta, date
+liste_datum = []
+a = 0
+while a < 42:
+    b = date.today() + timedelta(days = a * (-1))
+    b = b.strftime('%a, %Y-%m-%d')
+    liste_datum.append(b)
+    a += 1  
+print(liste_datum)
