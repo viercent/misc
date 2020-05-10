@@ -1,0 +1,14 @@
+https://recycledrobot.co.uk/words/?handy_python_functions
+
+
+import requests
+import os
+
+def download_image(url, dir):
+    if url.endswith(('.jpg', '.jpeg', '.png', '.gif')):
+        img = requests.get(url).content
+        file_name = os.path.basename(url)
+        with open(f'{dir}{file_name}', 'wb') as f:
+            f.write(img)
+
+download_image('https://www.welt.de/img/politik/ausland/mobile207845997/7521623987-ci23x11-w1280/FILES-FRANCE-HEALTH-VIRUS.jpg', './')
