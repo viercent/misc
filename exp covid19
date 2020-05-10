@@ -1,0 +1,50 @@
+AnzahlInfizierteD =[117,150,188,240,400,639,795,902,1139,1296,1567,2369,3062,3795
+,4838,6012,7156,8198,10999,13957,16662,18610,22672,27436,31554,36508,42288,48582,52547
+,57298,61913,67366,73522,79696,85778,91714]
+
+zeitraum = 7   # HIER ZEITRAUM IN TAGEN EINSTELLEN
+faktoren = []
+woche = []
+zähler = 0
+zähler2 = 0 
+a = 0
+b = zeitraum - 1
+c = 1
+while zähler < ((len(AnzahlInfizierteD) // zeitraum)):
+    if zähler2 == 0:
+        faktoren.append(AnzahlInfizierteD[b] / AnzahlInfizierteD[a])
+        woche.append("Woche " +str(c))
+    else:
+        faktoren.append(AnzahlInfizierteD[b] / AnzahlInfizierteD[a])
+        woche.append("Woche " +str(c))
+    a += zeitraum -1
+    b += zeitraum -1
+    c += 1 
+    zähler += 1
+    zähler2 += 1
+fertige_liste = list(zip(faktoren, woche))
+print(fertige_liste)
+
+
+
+AnzahlInfizierteI = [159,229,326,400,650,888,1128,1694,2036,2502,3089,3858,4636,5883,7375,9172,10149,12462,15113
+,17660,21157,24747,27980,31506,35713,41035,47021,53578,59138,63927,69176,74386,80539,86498,92472
+,97689,101739,105792,110574,115242,119827,124632]
+
+zeitraum = 7   # HIER ZEITRAUM IN TAGEN EINSTELLEN
+
+faktoren = []
+zähler = 0
+zähler2 = 0
+a = 0
+b = zeitraum - 1 
+while zähler < ((len(AnzahlInfizierteI) // zeitraum)):
+    if zähler2 == 0:
+        faktoren.append(AnzahlInfizierteI[b] / AnzahlInfizierteI[a])
+    else:
+         faktoren.append(AnzahlInfizierteI[b] / AnzahlInfizierteI[a])
+    a += zeitraum -1
+    b += zeitraum -1
+    zähler += 1
+    zähler2 += 1 
+print(faktoren)
