@@ -1,0 +1,17 @@
+import openpyxl as o
+import datetime as dt
+wb = o.load_workbook('probe.xlsx')
+ws = wb.active
+z = 2
+z2 = 2 
+for row in ws.iter_rows(min_row=2, max_row=16):
+    c1 = (ws.cell(row=z, column=1)).value
+    z2 = 2 
+    for row in ws.iter_rows(min_row=2, max_row=16): 
+        c2 = (ws.cell(row=z2, column=3)).value
+        c3 = (ws.cell(row=z2, column=4)).value
+        if c2 <= c1 and c3 >= c1:
+            ws.cell(row=z, column=2, value=ws.cell(row=z2, column=5).value)        
+        z2 += 1           
+    z += 1 
+wb.save(filename = 'probe_3.xlsx')
