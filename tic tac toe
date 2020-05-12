@@ -5,14 +5,15 @@ winrow_p1 = ["x", "x", "x"]
 winrow_p2 = ["o", "o", "o"]
 
 def ergebnis():
-    print(" ")
+    print("")
     print(row1[0], row1[1], row1[2])
     print(row2[0], row2[1], row2[2])
     print(row3[0], row3[1], row3[2])
     print(" ")
     
-def eingabe1():
-    print("Player 1, its your turn.")
+def eingabe1(occ):
+    if occupied == occ:
+        print("Player 1, its your turn.")
     row = input("   Row: ") 
     while checkint(row) == False:
         print("Please choose a number between 1 and 3. ")
@@ -26,31 +27,32 @@ def eingabe1():
     if row == 1:
         if row1[col-1] in ("o", "x"):
             print("Spot occupied, choose again.")
-            eingabe1()
+            eingabe1(1)
         else:
             row1[col-1] = "x"
     elif row == 2:
         if row2[col-1] in ("o", "x"):
             print("Spot occupied, choose again.")
-            eingabe1()
+            eingabe1(1)
         else:
             row2[col-1] = "x"
     else:
         if row3[col-1] in ("o", "x"):
             print("Spot occupied, choose again.")
-            eingabe1()
+            eingabe1(1)
         else:
             row3[col-1] = "x"
     ergebnis()
     if checkforwin() == True:   
-        print("Congratulations Player 2. You're a winner!")
+        print("Congratulations Player 1. You're a winner!")
     elif checkforwin() == False and checkfortie() == True:
         print("That's a tie.")        
     else:        
-        eingabe2()
+        eingabe2(0)
         
-def eingabe2():
-    print("Player 2, its your turn.")
+def eingabe2(occ):
+    if occupied == occ:
+        print("Player 2, its your turn.")
     row = input("   Row: ") 
     while checkint(row) == False:
         print("Please choose a number between 1 and 3. ")
@@ -64,19 +66,19 @@ def eingabe2():
     if row == 1:
         if row1[col-1] in ("o", "x"):
             print("Spot occupied, choose again.")
-            eingabe2()
+            eingabe2(1)
         else:
             row1[col-1] = "o"
     elif row == 2:
         if row2[col-1] in ("o", "x"):
             print("Spot occupied, choose again.")
-            eingabe2()
+            eingabe2(1)
         else:
             row2[col-1] = "o"
     else:
         if row3[col-1] in ("o", "x"):
             print("Spot occupied, choose again.")
-            eingabe2()
+            eingabe2(1)
         else:
             row3[col-1] = "o"
     ergebnis()
@@ -85,7 +87,7 @@ def eingabe2():
     elif checkforwin() == False and checkfortie() == True:
         print("That's a tie.")        
     else:        
-        eingabe1()
+        eingabe1(0)
         
 def checkforwin():
     if [row1[0], row2[0],row3[0]] in (winrow_p1, winrow_p2) or [row1[1], row2[1],row3[1]] in (winrow_p1, winrow_p2) or [row1[2], row2[2],row3[2]] in (winrow_p1, winrow_p2) or [row1[0], row2[1],row3[2]] in (winrow_p1, winrow_p2) or [row1[2], row2[1],row3[0]] in (winrow_p1, winrow_p2) or row1 in (winrow_p1, winrow_p2) or row2 in (winrow_p1, winrow_p2) or row3 in (winrow_p1, winrow_p2):
@@ -110,7 +112,8 @@ def checkint(a):
     except ValueError:
         return False 
 
+occupied = 0
 print("Player 1, you're x.")
 print("Player 2, you're o.")
 print(" ")
-eingabe1()
+eingabe1(0)
