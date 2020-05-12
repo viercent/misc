@@ -1,3 +1,83 @@
+AnzahlInfizierteD =[150 ,188 ,240 ,400 ,639 ,795 ,902 ,1139 ,1296 ,1567 ,2369 ,3062
+,3795 ,4838 ,6012 ,7156 ,8198 ,10999 ,13957 ,16662 ,18610 ,22672 ,27436 ,31554 ,36508 ,42288 ,48582 ,52547 ,57298
+,61913 ,67366 ,73522 ,79696 ,85778 ,91714 ,95391 ,99225 ,103228 ,108202, 113525 ,117658 ,120479 ,123016 ,125098
+,127584 ,130450 ,133830 ,137439 ,139897 ,141672 ,143457,145694 ,148046 ,150383 ,152438 ,154175 ,155193 ,156337
+,157641 ,159119 ,160758 ,161703 ,162496 ,163175 ,163860 ,164807 ,166091 ,167300 ,168551 ,169218]
+
+from datetime import timedelta, date
+datum = []
+a = 0
+while a < len(AnzahlInfizierteD):
+    b = date(2020, 2, 24) + timedelta(days = a)
+    b = b.strftime('%a, %d.%m')
+    datum.append(b)
+    a += 1  
+
+zeitraum = 7
+faktoren = [None]
+z = 0
+a = 0
+b = zeitraum - 1
+while z < ((len(AnzahlInfizierteD) // zeitraum)):
+    f = (AnzahlInfizierteD[b] / AnzahlInfizierteD[a])
+    f = (round(float(f),2))
+    faktoren.append(f)
+    print("Woche "+str(z+1)+": "+str(f))
+    a += zeitraum -1
+    b += zeitraum -1
+    z += 1
+
+nr = []
+for i in range(1, len(AnzahlInfizierteD) // 7):
+    nr.append(i)
+
+AnzahlInfizierteD.insert(0, None)
+
+import matplotlib.pyplot as plt
+plt.figure()
+plt.subplot(211)
+plt.plot(AnzahlInfizierteD, 'k')
+plt.axis([1, 70, 0, 200000])
+plt.ylabel('Infizierte')
+plt.xlabel('Tage seit dem 150. Infizierten')
+plt.grid(True)
+
+plt.subplot(212)
+plt.plot(faktoren,'bo')
+plt.axis([0.5, 10.5, 0, 7])
+plt.ylabel('Faktor')
+plt.xlabel('Wochen seit dem 150. Infizierten')
+plt.grid(True)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 AnzahlInfizierteD =[16 ,18 ,21 ,26 ,53 ,66 ,117 ,150 ,188 ,240 ,400 ,639 ,795 ,902 ,1139 ,1296 ,1567 ,2369 ,3062
 ,3795 ,4838 ,6012 ,7156 ,8198 ,10999 ,13957 ,16662 ,18610 ,22672 ,27436 ,31554 ,36508 ,42288 ,48582 ,52547 ,57298
 ,61913 ,67366 ,73522 ,79696 ,85778 ,91714 ,95391 ,99225 ,103228 ,108202, 113525 ,117658 ,120479 ,123016 ,125098
