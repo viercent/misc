@@ -26,27 +26,52 @@ c = ws.cell(row=1, column=7, value="Arbeitszeit")
 c.font = Font(bold=True)
 ws.column_dimensions['G'].width = 10
 
-import datetime as dt
-import locale
+def checkint(value, beginn, ende):
+    try:
+        value = int(value)
+        if value in range(beginn, ende):
+            return True
+        else:
+            return False
+    except ValueError:
+        return False
 
+import datetime as dt
+from datetime import date
+import locale
 locale.setlocale(locale.LC_ALL, 'deu_deu')
 
-from datetime import date
-
+print("Ab welchem Datum soll mit der Arbeitszeitaufzeichnung begonnen werden?")
+ipy = input("Jahr: ")
+while checkint(ipy, 2020, 2051) == False:
+    print("Ungültige Eingabe.")
+    ipy = input("Jahr: ")
+ipy = int(ipy)
+ipm = input("Monat: ")
+while checkint(ipm, 1, 13) == False:
+    print("Ungültige Eingabe.")
+    ipm = input("Monat: ")
+ipm = int(ipm)
+ipd = input("Tag: ")
+while checkint(ipd, 1, 32) == False:
+    print("Ungültige Eingabe.")
+    ipd = input("Tag: ")
+ipd = int(ipd)      
+    
 ip = int(input("Bis zum Ende welchen Jahres soll die Arbeitszeit erfasst werden? "))
 while ip < 2020 or ip > 2050:
     print("Eingabe ungültig, bitte ein Jahr zwischen 2020 und 2050 wählen.")
     ip = input("Bis zum Ende welchen Jahres soll die Arbeitszeit erfasst werden? ")     
-d = date(ip, 12, 31) - dt.date.today()
+d = dt.date(ip, 12, 31) - dt.date(ipy, ipm, ipd)
 
 datum = []
 for i in range (0,d.days+1):
-    datum.append(dt.date.isoformat(dt.date.today() + dt.timedelta(i)))
+    datum.append(dt.date.isoformat(dt.date(ipy, ipm, ipd) + dt.timedelta(i)))
 
 wt = []
 wt_num = []
 for i in range (0,d.days+1):
-    tag = dt.date.today() + dt.timedelta(i)
+    tag = dt.date(ipy, ipm, ipd) + dt.timedelta(i)
     wt.append(tag.strftime("%A"))
     wt_num.append(tag.isoweekday())
 
@@ -58,7 +83,7 @@ for row in ws.iter_rows(min_row=2, max_row=d.days+2):
     z += 1
 
 z = 2 
-kw = dt.date.today().isocalendar()[1] + 1
+kw = dt.date(ipy, ipm, ipd).isocalendar()[1] + 1
 for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
     c = (ws.cell(row=z, column=2)).value
     if c == 'Montag':
@@ -93,7 +118,6 @@ for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
     z += 1
 
 z = int(d.days-8 + (d.days//7))
-print(z)
 for row in ws.iter_rows(min_row=d.days-8, max_row=ws.max_row):
     c = (ws.cell(row=z, column=3)).value    
     if c == dt.date.isoformat(date(ip, 12, 31)):  
@@ -102,4 +126,4 @@ for row in ws.iter_rows(min_row=d.days-8, max_row=ws.max_row):
         c.number_format = '[hh]:mm'
     z += 1
     
-wb.save(filename = 'Arbeitszeit_ab_2020.xlsx')
+wb.save(filename = 'Arbeitszeit.xlsx')
