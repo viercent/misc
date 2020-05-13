@@ -44,14 +44,17 @@ locale.setlocale(locale.LC_ALL, 'deu_deu')
 print("Ab welchem Datum soll mit der Arbeitszeitaufzeichnung begonnen werden?")
 ipy = input("Jahr: ")
 while checkint(ipy, 2020, 2051) == False:
+    print("Ungültige Eingabe.")
     ipy = input("Jahr: ")
 ipy = int(ipy)
 ipm = input("Monat: ")
 while checkint(ipm, 1, 13) == False:
+    print("Ungültige Eingabe.")
     ipm = input("Monat: ")
 ipm = int(ipm)
 ipd = input("Tag: ")
 while checkint(ipd, 1, 32) == False:
+    print("Ungültige Eingabe.")
     ipd = input("Tag: ")
 ipd = int(ipd)      
     
