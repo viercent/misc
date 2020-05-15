@@ -1,129 +1,117 @@
-from openpyxl import Workbook
-from openpyxl.styles import Font
+row1 = ["-", "-", "-"]
+row2 = ["-", "-", "-"]
+row3 = ["-", "-", "-"]
+winrow_p1 = ["x", "x", "x"]
+winrow_p2 = ["o", "o", "o"]
 
-wb = Workbook()
-ws = wb.active
+def ergebnis():
+    print("\n"+row1[0], row1[1], row1[2])
+    print(row2[0], row2[1], row2[2])
+    print(row3[0], row3[1], row3[2]+"\n")
+  
+def eingabe1(occ):
+    if occupied == occ:
+        print("Player 1, its your turn.")
+    row = input("   Row: ") 
+    while checkint(row) == False:
+        print("Please choose a number between 1 and 3. ")
+        row = input("   Row: ")        
+    row = int(row)
+    col = input("   Column: ")  
+    while checkint(col) == False:
+        print("Please choose a number between 1 and 3. ")
+        col = input("   Column: ")        
+    col = int(col)
+    if row == 1:
+        if row1[col-1] in ("o", "x"):
+            print("Spot occupied, choose again.")
+            eingabe1(1)
+        else:
+            row1[col-1] = "x"
+    elif row == 2:
+        if row2[col-1] in ("o", "x"):
+            print("Spot occupied, choose again.")
+            eingabe1(1)
+        else:
+            row2[col-1] = "x"
+    else:
+        if row3[col-1] in ("o", "x"):
+            print("Spot occupied, choose again.")
+            eingabe1(1)
+        else:
+            row3[col-1] = "x"
+    ergebnis()
+    if checkforwin() == True:   
+        print("Congratulations Player 1. You're a winner!")
+    elif checkforwin() == False and checkfortie() == True:
+        print("That's a tie.")        
+    else:        
+        eingabe2(0)
+        
+def eingabe2(occ):
+    if occupied == occ:
+        print("Player 2, its your turn.")
+    row = input("   Row: ") 
+    while checkint(row) == False:
+        print("Please choose a number between 1 and 3. ")
+        row = input("   Row: ")        
+    row = int(row)
+    col = input("   Column: ")  
+    while checkint(col) == False:
+        print("Please choose a number between 1 and 3. ")
+        col = input("   Column: ")        
+    col = int(col)    
+    if row == 1:
+        if row1[col-1] in ("o", "x"):
+            print("Spot occupied, choose again.")
+            eingabe2(1)
+        else:
+            row1[col-1] = "o"
+    elif row == 2:
+        if row2[col-1] in ("o", "x"):
+            print("Spot occupied, choose again.")
+            eingabe2(1)
+        else:
+            row2[col-1] = "o"
+    else:
+        if row3[col-1] in ("o", "x"):
+            print("Spot occupied, choose again.")
+            eingabe2(1)
+        else:
+            row3[col-1] = "o"
+    ergebnis()
+    if checkforwin() == True:   
+        print("Congratulations Player 2. You're a winner!")
+    elif checkforwin() == False and checkfortie() == True:
+        print("That's a tie.")        
+    else:        
+        eingabe1(0)
+        
+def checkforwin():
+    if [row1[0], row2[0],row3[0]] in (winrow_p1, winrow_p2) or [row1[1], row2[1],row3[1]] in (winrow_p1, winrow_p2) or [row1[2], row2[2],row3[2]] in (winrow_p1, winrow_p2) or [row1[0], row2[1],row3[2]] in (winrow_p1, winrow_p2) or [row1[2], row2[1],row3[0]] in (winrow_p1, winrow_p2) or row1 in (winrow_p1, winrow_p2) or row2 in (winrow_p1, winrow_p2) or row3 in (winrow_p1, winrow_p2):
+        return True      
+    else: 
+        return False
+    
+def checkfortie():
+    row4 = row1 + row2 + row3
+    if "-" in row4:
+        return False
+    else:
+        return True
 
-c = ws.cell(row=1, column=1, value="KW")
-c.font = Font(bold=True)
-ws.column_dimensions['A'].width = 4
-c = ws.cell(row=1, column=2, value="Wochentag")
-c.font = Font(bold=True)
-ws.column_dimensions['B'].width = 12
-c = ws.cell(row=1, column=3, value="Datum")
-c.font = Font(bold=True)
-ws.column_dimensions['C'].width = 12
-c = ws.cell(row=1, column=4, value="Kommen")
-c.font = Font(bold=True)
-ws.column_dimensions['D'].width = 10
-c = ws.cell(row=1, column=5, value="Gehen")
-c.font = Font(bold=True)
-ws.column_dimensions['E'].width = 10
-c = ws.cell(row=1, column=6, value="Pause")
-c.font = Font(bold=True)
-ws.column_dimensions['F'].width = 10
-c = ws.cell(row=1, column=7, value="Arbeitszeit")
-c.font = Font(bold=True)
-ws.column_dimensions['G'].width = 10
-
-def checkint(value, beginn, ende):
+def checkint(a):
     try:
-        value = int(value)
-        if value in range(beginn, ende):
+        a = int(a)
+        if int(a) in range(1,4):
             return True
         else:
-            return False
+            return False 
     except ValueError:
-        return False
+        return False 
 
-import datetime as dt
-from datetime import date
-import locale
-locale.setlocale(locale.LC_ALL, 'deu_deu')
-
-print("Ab welchem Datum soll mit der Arbeitszeitaufzeichnung begonnen werden?")
-ipy = input("Jahr: ")
-while checkint(ipy, 2020, 2051) == False:
-    print("Ungültige Eingabe.")
-    ipy = input("Jahr: ")
-ipy = int(ipy)
-ipm = input("Monat: ")
-while checkint(ipm, 1, 13) == False:
-    print("Ungültige Eingabe.")
-    ipm = input("Monat: ")
-ipm = int(ipm)
-ipd = input("Tag: ")
-while checkint(ipd, 1, 32) == False:
-    print("Ungültige Eingabe.")
-    ipd = input("Tag: ")
-ipd = int(ipd)      
-    
-ip = int(input("Bis zum Ende welchen Jahres soll die Arbeitszeit erfasst werden? "))
-while ip < 2020 or ip > 2050:
-    print("Eingabe ungültig, bitte ein Jahr zwischen 2020 und 2050 wählen.")
-    ip = input("Bis zum Ende welchen Jahres soll die Arbeitszeit erfasst werden? ")     
-d = dt.date(ip, 12, 31) - dt.date(ipy, ipm, ipd)
-
-datum = []
-for i in range (0,d.days+1):
-    datum.append(dt.date.isoformat(dt.date(ipy, ipm, ipd) + dt.timedelta(i)))
-
-wt = []
-wt_num = []
-for i in range (0,d.days+1):
-    tag = dt.date(ipy, ipm, ipd) + dt.timedelta(i)
-    wt.append(tag.strftime("%A"))
-    wt_num.append(tag.isoweekday())
-
-z = 2
-c = 0
-for row in ws.iter_rows(min_row=2, max_row=d.days+2):
-    c = ws.cell(row=z, column=2, value=wt[z-2])
-    c = ws.cell(row=z, column=3, value=datum[z-2])
-    z += 1
-
-z = 2 
-kw = dt.date(ipy, ipm, ipd).isocalendar()[1] + 1
-for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
-    c = (ws.cell(row=z, column=2)).value
-    if c == 'Montag':
-        if kw > 53:
-            kw = 1 
-        ws.cell(row=z, column=1, value=kw)
-        kw += 1
-    z += 1 
-
-z = 2
-for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
-    c = (ws.cell(row=z, column=2)).value
-    if c == 'Sonntag':
-        ws.insert_rows(z+1)
-        if z > 8:
-            c = ws.cell(row=z, column=8, value="=SUM(G"+str(z)+":G"+str(z-6)+")")
-            c.font = Font(bold=True)
-            c.number_format = '[hh]:mm'
-        else:
-            c = ws.cell(row=z, column=8, value="=SUM(G"+str(z)+":G"+str(2)+")")
-            c.font = Font(bold=True)
-            c.number_format = '[hh]:mm'
-        z += 7
-    else:
-        z += 1
-
-z = 2
-for row in ws.iter_rows(min_row=2, max_row=ws.max_row):
-    if ws.cell(row=z, column=2).value != None:
-        c = ws.cell(row=z, column=7, value="=E"+str(z)+"-D"+str(z)+"-F"+str(z))
-        c.number_format = 'h:mm'
-    z += 1
-
-z = int(d.days-8 + (d.days//7))
-for row in ws.iter_rows(min_row=d.days-8, max_row=ws.max_row):
-    c = (ws.cell(row=z, column=3)).value    
-    if c == dt.date.isoformat(date(ip, 12, 31)):  
-        c = ws.cell(row=z, column=8, value="=SUM(G"+str(int(z))+":G"+str(int(z)-wt_num[-1]+1)+")")
-        c.font = Font(bold=True)
-        c.number_format = '[hh]:mm'
-    z += 1
-    
-wb.save(filename = 'Arbeitszeit.xlsx')
+occupied = 0
+print("Player 1, you're x.")
+print("Player 2, you're o.")
+print(" ")
+eingabe1(0)
