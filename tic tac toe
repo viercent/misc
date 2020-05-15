@@ -1,9 +1,3 @@
-row1 = ["-", "-", "-"]
-row2 = ["-", "-", "-"]
-row3 = ["-", "-", "-"]
-winrow_p1 = ["x", "x", "x"]
-winrow_p2 = ["o", "o", "o"]
-
 def board():
     print("\n"+row1[0], row1[1], row1[2])
     print(row2[0], row2[1], row2[2])
@@ -11,14 +5,14 @@ def board():
   
 def player1(occ):
     if occupied == occ:
-        print("Player 1, its your turn.")
+        print("Player 1, it's your turn.")
     row = input("   Row: ") 
-    while checkint(row) == False:
+    while checkintandrange(row) == False:
         print("Please choose a number between 1 and 3. ")
         row = input("   Row: ")        
     row = int(row)
     col = input("   Column: ")  
-    while checkint(col) == False:
+    while checkintandrange(col) == False:
         print("Please choose a number between 1 and 3. ")
         col = input("   Column: ")        
     col = int(col)
@@ -50,14 +44,14 @@ def player1(occ):
         
 def player2(occ):
     if occupied == occ:
-        print("Player 2, its your turn.")
+        print("Player 2, it's your turn.")
     row = input("   Row: ") 
-    while checkint(row) == False:
+    while checkintandrange(row) == False:
         print("Please choose a number between 1 and 3. ")
         row = input("   Row: ")        
     row = int(row)
     col = input("   Column: ")  
-    while checkint(col) == False:
+    while checkintandrange(col) == False:
         print("Please choose a number between 1 and 3. ")
         col = input("   Column: ")        
     col = int(col)    
@@ -88,7 +82,14 @@ def player2(occ):
         player1(0)
         
 def checkforwin():
-    if [row1[0], row2[0],row3[0]] in (winrow_p1, winrow_p2) or [row1[1], row2[1],row3[1]] in (winrow_p1, winrow_p2) or [row1[2], row2[2],row3[2]] in (winrow_p1, winrow_p2) or [row1[0], row2[1],row3[2]] in (winrow_p1, winrow_p2) or [row1[2], row2[1],row3[0]] in (winrow_p1, winrow_p2) or row1 in (winrow_p1, winrow_p2) or row2 in (winrow_p1, winrow_p2) or row3 in (winrow_p1, winrow_p2):
+    if [row1[0], row2[0],row3[0]] in (winrow_p1, winrow_p2) or \
+    [row1[1], row2[1],row3[1]] in (winrow_p1, winrow_p2) or \
+    [row1[2], row2[2],row3[2]] in (winrow_p1, winrow_p2) or \
+    [row1[0], row2[1],row3[2]] in (winrow_p1, winrow_p2) or \
+    [row1[2], row2[1],row3[0]] in (winrow_p1, winrow_p2) or \
+    row1 in (winrow_p1, winrow_p2) or \
+    row2 in (winrow_p1, winrow_p2) or \
+    row3 in (winrow_p1, winrow_p2):
         return True      
     else: 
         return False
@@ -100,7 +101,7 @@ def checkfortie():
     else:
         return True
 
-def checkint(a):
+def checkintandrange(a):
     try:
         a = int(a)
         if int(a) in range(1,4):
@@ -109,6 +110,12 @@ def checkint(a):
             return False 
     except ValueError:
         return False 
+
+row1 = ["-", "-", "-"]
+row2 = ["-", "-", "-"]
+row3 = ["-", "-", "-"]
+winrow_p1 = ["x", "x", "x"]
+winrow_p2 = ["o", "o", "o"]
 
 occupied = 0
 print("Player 1, you're x.")
