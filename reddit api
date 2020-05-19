@@ -1,0 +1,18 @@
+import json, requests, time
+posts = []
+def user(username):
+    url = "https://www.reddit.com/user/"+str(username)+".json"
+    userGet = requests.get(url, headers = {'User-agent': 'milowthedawg'})
+    userGet.raise_for_status()
+    userData = json.loads(userGet.text)
+    for i in range(10):
+        recentPosts = userData["data"]["children"][i]["data"]["body"]
+        posts.append(recentPosts)
+    return posts
+
+user("dawgmilo")
+
+for i in range(len(posts)):
+    print(str(posts[i])+"\n")
+    
+time.sleep(10)
