@@ -1,0 +1,203 @@
+# # Simulate a magic 8-ball.
+# # Allow the user to enter their question.
+# # Display an in progress message(i.e. "thinking").
+# # Create 20 responses, and show a random response.
+# # Allow the user to ask another question or quit.
+# 
+# import random
+# import time
+# 
+# answers = []
+# for i in range(20):
+#     answers.append("Random Answer "+str(random.randint(1,20)))
+#  
+# def askquestion():
+#     question = input("What do you want to know?\n")
+#     print("\nThinking...\n")
+#     time.sleep(random.randint(0,1))
+#     print(answers[random.randint(0,20)])
+#     quit8ball = input("\nDo you want to quit (yes/no)?\n")
+#     while quit8ball not in ("yes", "no"):
+#         quit8ball = input("\nPlease use yes or no only.\n")
+#     if quit8ball == "no":
+#         askquestion()
+#     else:
+#         print("\nOkay, bye!\n")
+#     
+# askquestion()
+# 
+
+
+
+
+# Rock Paper Scissors Game
+# Create a rock-paper-scissors game.
+# Ask the player to pick rock, paper or scissors.
+# Have the computer chose its move.
+# Compare the choices and decide who wins.
+# Print the results.
+
+# import random
+# 
+# possibilites = ["rock", "paper", "scissors", "Rock", "Paper", "Scissors", 0, 0]
+# 
+# def rps(): 
+#     player = input("\nRock, paper, scissors?\n")
+#     while player not in(possibilites[0:6]):
+#         player = input("\nPlease choose between rock, paper and scissors.\n")
+#     computer = possibilites[random.randint(0,2)]
+#     print("Computer chose "+str(computer))
+#     if player == computer:
+#          print("\nTie!\n")
+#     elif (player in (possibilites[0], possibilites[3]) and computer in (possibilites[2], possibilites[5])) or \
+#          (player in (possibilites[1], possibilites[4]) and computer in (possibilites[0], possibilites[3])) or \
+#          (player in (possibilites[2], possibilites[5]) and computer in (possibilites[1], possibilites[4])):
+#         print("\nYou're a winner!\n")
+#         possibilites[6] += 1
+#     else: 
+#         print("\nComputer won!\n")
+#         possibilites[7] += 1
+#     playagain = input("Do you want to play again (yes/no)?\n")
+#     while playagain not in ("yes", "no"):
+#         playagain = input("\nPlease use yes or no only.\n")
+#     if playagain == "yes":
+#         rps()
+#     else:
+#         print("\nFinal Score\nPlayer: "+str(possibilites[6])+", Computer: "+str(possibilites[7]))
+# rps()
+
+
+
+
+
+
+# Multiplication Table
+# Create a program that prints out a multiplication table for the numbers 1 through 9.
+# It should include the numbers 1 through 9 on the top and left axises, and it should be relatively
+# easy to find the product of two numbers. Do not simply write out every line manually (ie print('7 14 21 28 35 49 56 63') ).
+# Subgoals:
+# As your products get larger, your columns will start to get crooked from the number of characters
+# on each line. Clean up your table by evenly spacing columns so it is very easy to find the product
+# of two numbers.
+# Allow the user to choose a number to change the size of the table (so if they type in 12, the table
+# printed out should be a 12x12 multiplication table).
+# 
+# 
+# m = []
+# for i in range(0, int(input("Multiplication Table from 1 to "))+1):
+#     m.append(i)
+# print([str(item).zfill(len(str(len(m)*len(m)))) for item in m])
+# erg = []
+# for i1 in range(1,len(m)):
+#     erg = [m[i1]]
+#     for i2 in range(1,len(m)):
+#         erg.append(i1*i2)
+#     print([str(item).zfill(len(str(len(m)*len(m)))) for item in erg])
+
+        
+
+
+# Fibonacci Sequence
+# If you do not know about the Fibonacci Sequence, read about it here.
+# 
+# Define a function that allows the user to find the value of the nth term in the sequence.
+# To make sure you've written your function correctly, test the first 10 numbers of the sequence.
+# You can assume either that the first two terms are 0 and 1 or that they are both 1.
+# There are two methods you can employ to solve the problem. One way is to solve it using a loop and the other way is to use recursion.
+# Try implementing a solution using both methods.
+# 
+# val = int(input("nth nr of fib "))
+# fibs = [0, 1]
+# for i in range(val-2):
+#     fibs.append(fibs[i]+fibs[i+1])
+# print(fibs[val-1])
+
+
+
+# Create a simple game where the computer randomly selects a number between 1 and 100 and the user has to
+# guess what the number is.
+# After every guess, the computer should tell the user if the guess is higher or lower than the answer.
+# When the user guesses the correct number, print out a congratulatory message.
+# Subgoals:
+# Add an introductory message that explains to the user how to play your game.
+# In addition to the congratulatory message at the end of the game, also print out how many guesses were
+# taken before the user arrived at the correct answer.
+# At the end of the game, allow the user to decide if they want to play again (without having to restart the program).
+
+
+# import random
+# def game():
+#     n = random.randint(1,100)
+#     g = int(input("Guess which number between 1 and 100 I chose: "))
+#     l = 1
+#     while g != n:
+#         if g < n:
+#             g = int(input("Your guess was too low. Try again: "))
+#         else:
+#             g = int(input("Your guess was too high. Try again: "))
+#         l += 1
+#     print("Correct. Tries needed: "+str(l))
+#     if input("Do you want to play again? ") in ("Yes", "yes", "Y", "y"):
+#         game()
+# game()
+
+
+
+
+
+
+
+# 
+# Dice Rolling Simulator
+# By using the random module, Python can do things like pseudo-random number generation.
+# 
+# Allow the user to input the amount of sides on a dice and how many times it should be rolled.
+# Your program should simulate dice rolls and keep track of how many times each number comes up (this does not have to be displayed).
+# Finally, print out how many times each number came up.
+# 
+# Subgoals:
+# Adjust your program so that if the user does not type in a number when they need to, the program will keep prompting them to type in a real number until they do so.
+# Put the program into a loop so that the user can continue to simulate dice rolls without having to restart the entire program.
+# In addition to printing out how many times each side appeared, also print out the percentage it appeared. If you can, round the percentage to 4 digits total OR two decimal places.
+# Bonus:
+# You are about to play a board game, but you realize you don't have any dice. Fortunately you have this program.
+# Create a program that opens a new window and draws 2 six-sided dice
+# Allow the user to quit, or roll again
+# Allow the user to select the number of dice to be drawn on screen(1-4) 2. Add up the total of the dice and display it
+
+# 
+# import random as rd
+# 
+# n = int(input("Sides of the dice: "))
+# n2 = int(input("Times rolled: "))
+# dice = []
+# rolled = [0]*n
+# for i in range(1,n+1):
+#     dice.append(i)
+# for i in range(n2):
+#     a = rd.randint(1,n) - 1 
+#     rolled[a] += 1
+# for i in range(n):
+#     print(str(dice[i])+": "+str(rolled[i])+" ("+str(round(float(rolled[i]/sum(rolled)*100),2))+"%)")
+# 
+
+
+#Importing modules
+import json
+import urllib2
+
+# Open the URL and the screen name
+url = "http://api.twitter.com/1/statuses/user_timeline.json?screen_name=wordpress"
+
+# This takes a python object and dumps it to a string which is a JSON representation of that object
+data = json.load(urllib2.urlopen(url))
+
+#print the result
+print(data)
+
+
+
+
+
+
+
