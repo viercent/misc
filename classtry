@@ -1,0 +1,38 @@
+import random
+
+class Player:
+    scoreRound = 0
+    scoreTotal = 100
+
+### KLASSE DECK MIT FUNKTIONEN (NEUES DECK ERSTELLEN UND KARTE ENTFERNEN)
+class Deck:
+    gameRound = 1
+    deck = []
+    
+    def defaultDeck():
+        deck = []
+        for i in range(1, 11):
+            cards=[]
+            cards.append(i)
+            cards.append(4)
+            deck.append(cards)
+        deck.append([10, 4])
+        deck.append([10, 4])
+        deck.append([10, 4])
+        return deck
+
+    def deleteCard(cardnumber):
+        deck[cardnumber][1] -= 1 
+
+### ERSTELLUNG EINES NEUEN DECKS
+Deck.defaultDeck()
+
+### PRINT STATEMENT ERGIBT LEERE LISTE
+print(Deck.deck)
+
+### PRINT STATEMENT ERGIBT LISTE WIE ICH SIE WILL
+print(Deck.defaultDeck())
+
+### WIE RUFE ICH AUSSERHALB DER KLASSE DIE LISTE "deck" IN DER KLASSE "Deck" AB?
+
+
