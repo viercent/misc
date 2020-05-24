@@ -1,0 +1,102 @@
+import random
+import statistics
+ 
+class Player:
+    def __init__(self):
+        self.cards = []
+        self.scoreTotal = 100
+        self.currentScore = 0 
+
+    def adjustTotal(self, score):
+        self.scoreTotal -= score
+#        print("Your total score is: "+str(p.scoreTotal))
+    
+    def adjustCurrent(self):
+        self.currentScore = 0 
+        for i in self.cards:
+            self.currentScore += availableCards[i]
+#        print("Your current score is: "+str(self.currentScore))     
+
+    def finishRound(self):
+        if self.currentScore > 21:
+            self.adjustTotal(21)
+        else:
+            self.adjustTotal(21 - self.currentScore)
+        self.cards = []
+        self.currentScore = 0 
+
+class Deck:      
+    def __init__(self):
+        self.gameRound = 1
+        self.deck = []
+        self.cards = []
+
+    def defaultDeck(self):
+        self.deck = [4]*13 
+        
+    def drawCard(self):
+        a = random.randint(0,12)
+        while self.deck[a] == 0:
+            a = random.randint(0,12)
+        self.cards.append(a)
+        self.deleteCard(a)        
+    
+    def deleteCard(self, cardnumber):
+        self.deck[cardnumber] -= 1 
+
+    def nextRound(self):
+        self.gameRound += 1
+
+    def newCards(self):
+        self.cards = []
+        for _ in range (2):
+            a = random.randint(0,12)
+            while self.deck[a] == 0:
+                a = random.randint(0,12)
+            self.cards.append(a)
+            self.deleteCard(a)
+        return self.cards
+
+    def showDeck(self):
+        print(self.deck)
+        
+availableCards = []
+for i in range(1,11):  
+    availableCards.append(i)
+for _ in range(3):
+    availableCards.append(10)
+
+tempresult = []
+permresult = []
+meanresult = []
+maxresult = []
+minresult = []
+
+d = Deck()
+d.defaultDeck()
+p = Player()
+p.cards = d.newCards()
+
+for i in range(11,19):
+    for _ in range(100000):
+        for _ in range(5):
+            p.adjustCurrent()        
+            while p.currentScore < i:
+                d.drawCard()
+                p.adjustCurrent() 
+            p.finishRound()
+            d.nextRound()
+            tempresult.append(p.scoreTotal)
+            p.cards = d.newCards()
+        permresult.append(tempresult[-1])
+        p.scoreTotal = 100
+        d.defaultDeck()
+    print(permresult)
+    meanresult.append(statistics.mean(permresult))
+    maxresult.append(max(permresult))
+    minresult.append(min(permresult))
+    tempresult = []
+    permresult = []
+print("\n\n")
+for i in range(len(meanresult)):
+    print("Result for draw if current score under "+str(i+11)+": "+str(meanresult[i])+" ("+str(minresult[i])+", "+str(maxresult[i])+")")
