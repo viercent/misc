@@ -1,0 +1,39 @@
+import json, requests, webbrowser
+
+titles = []
+ids = []
+choice = 1 
+
+def title(x):
+    url = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=10&format=json"
+    data = requests.get(url, headers = {'User-agent': 'milow'})
+    data.raise_for_status()
+    wikidata = json.loads(data.text)
+    for i in range(0,5):
+        title = wikidata["query"]["random"][i]["title"]
+        identifier = wikidata["query"]["random"][i]["id"]
+        titles.append(title)
+        ids.append(identifier)
+    if x == 1: pickarticle(0)
+    else: pickarticle(1)        
+
+def pickarticle(x):
+    global titles
+    global ids
+    if x == 1: print("\nHere are 5 random Wikipedia articles.")
+    print("\n")
+    for i in range(5):
+        print(str(i+1)+": "+str(titles[i])+"")
+    choice = input("\nWhich one would you like to read? Type 'New' to get new ones. \n")
+    if choice in ('1', '2', '3', '4', '5'):
+        choice = int(choice)
+        webbrowser.open("https://en.wikipedia.org/wiki?curid="+str(ids[choice-1]))
+    elif choice == 'New':
+        titles = []
+        ids = []
+        title(1)
+    else:
+        print("\nInvalid input")
+        return
+
+title(0)
